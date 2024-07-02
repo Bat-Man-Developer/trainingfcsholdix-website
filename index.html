@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>FCS Training Institute</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    /* Add some basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: #333;
+      text-decoration: none;
+      padding: 10px;
+      margin: 5px;
+    }
+    nav a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+    main {
+      padding: 20px;
+    }
+    .faculty-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      margin-top: 40px;
+    }
+    .faculty-item {
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+    }
+    .enquiry-form {
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .enquiry-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .enquiry-form input,
+    .enquiry-form textarea,
+    .enquiry-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .enquiry-form button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+        /* Add some basic styling */
+    /* (CSS styles omitted for brevity) */
+    .captcha-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .captcha-image {
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        padding: 5px;
+      }
+      .captcha-input {
+        flex-grow: 1;
+      }
+
+      .accreditation-section {
+        padding: 40px 0;
+        background-color: #f5f5f5;
+      }
+      .accreditation-section h2 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .accreditation-logos {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+      .accreditation-logos img {
+        max-width: 150px;
+        height: auto;
+      }
+  </style>
+
+  <script>
+    function generateCaptcha() {
+      const canvas = document.getElementById('captcha-canvas');
+      const ctx = canvas.getContext('2d');
+      const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      let captcha = '';
+
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Generate a random Captcha code
+      for (let i = 0; i < 6; i++) {
+        const char = characters[Math.floor(Math.random() * characters.length)];
+        captcha += char;
+        ctx.font = '30px Arial';
+        ctx.fillText(char, 20 + i * 20, 35);
+      }
+
+      // Store the Captcha code in the session storage
+      sessionStorage.setItem('captcha', captcha);
+    }
+
+    // Generate the initial Captcha
+    generateCaptcha();
+
+    // Validate the Captcha when the form is submitted
+    document.getElementById('enquiry-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const userInput = document.getElementById('captcha-input').value;
+      const captcha = sessionStorage.getItem('captcha');
+
+      if (userInput === captcha) {
+        alert('Captcha verified successfully!');
+        // Submit the form
+        event.target.submit();
+      } else {
+        alert('Incorrect Captcha. Please try again.');
+        generateCaptcha();
+      }
+    });
+  </script>
+
+</head>
+<body>
+
+  <header>
+    <h1>FCS LMS - Learner Management System</h1>
+  </header>
+  
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="registration.html">Registration</a>
+    <a href="grades.html">Grades</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main>
+    <h2>Welcome to FCS LMS</h2>
+    <p>FCS LMS is a comprehensive Learner Management System designed to provide a seamless educational experience for students and teachers. With our user-friendly platform, you can access course materials, submit assignments, check grades, and stay informed about school announcements.</p>
+    <h2>Featured Courses</h2>
+    <ul>
+        <div class="faculty-container">
+            <div class="faculty-item">
+              <h3>Information and Communications Technology (ICT)</h3>
+              <p>Explore the latest advancements in information technology and communication systems.</p>
+            </div>
+            <div class="faculty-item">
+              <h3>Business Administration</h3>
+              <p>Develop essential business skills and learn to manage organizations effectively.</p>
+            </div>
+            <div class="faculty-item">
+              <h3>Cybersecurity</h3>
+              <p>Gain expertise in protecting digital systems and data from unauthorized access and threats.</p>
+            </div>
+            <div class="faculty-item">
+              <h3>Software Engineering</h3>
+              <p>Learn to design, develop, and maintain high-quality software systems.</p>
+            </div>
+            <div class="faculty-item">
+              <h3>Technical Support</h3>
+              <p>Develop the skills to provide effective technical assistance and troubleshooting services.</p>
+            </div>
+          </div>
+    </ul>
+    <h2>Upcoming Events</h2>
+    <p>Stay up-to-date with the latest events and activities happening at FCS LMS.</p>
+    <ul>
+      <li>June 15: End-of-Year Celebration</li>
+      <li>July 1: Summer Enrichment Program Begins</li>
+      <li>August 15: Back-to-School Open House</li>
+    </ul>
+
+    <div class="enquiry-form">
+      <h2>Enquiry Form</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="contact">Contact Number:</label>
+        <input type="tel" id="contact" name="contact" required>
+
+        <label for="course">Course:</label>
+        <select id="course" name="course" required>
+          <option value="">Select a course</option>
+          <option value="ict">Information and Communications Technology (ICT)</option>
+          <option value="business">Business Administration</option>
+          <option value="cybersecurity">Cybersecurity</option>
+          <option value="software">Software Engineering</option>
+          <option value="technical-support">Technical Support</option>
+        </select>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <div class="captcha-container">
+          <div class="captcha-image">
+            <canvas id="captcha-canvas" width="150" height="50"></canvas>
+          </div>
+          <input type="text" class="captcha-input" id="captcha-input" name="captcha" placeholder="Enter the text in the image" required>
+          <button type="button" onclick="generateCaptcha()">Refresh Captcha</button>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <section class="accreditation-section">
+        <h2>Accreditation</h2>
+        <div class="accreditation-logos">
+          <img src="accreditation-logo-1.png" alt="Accreditation Logo 1">
+          <img src="accreditation-logo-2.png" alt="Accreditation Logo 2">
+          <img src="accreditation-logo-3.png" alt="Accreditation Logo 3">
+        </div>
+      </section>
+
+  </main>
+  <footer>
+    <p>&copy; 2024 FCS LMS. All rights reserved.</p>
+  </footer>
+</body>
+</html>
